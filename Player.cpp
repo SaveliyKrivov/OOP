@@ -13,6 +13,18 @@ int Player::getScore() const {
     return this->score;
 }
 
+int Player::getLevel() const {
+    return this->level;
+}
+
+void Player::setLevel(int value) {
+    if(value == 0 || value == 1) {
+        this->level = value;
+    }
+    else{
+        this->level = 0;
+    }
+}
 
 void Player::setHealth(int value) {
     if(value >= 0 and value < 101) {

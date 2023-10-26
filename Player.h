@@ -10,14 +10,19 @@ public:
 
     int getHealth() const;
 
+    int getLevel() const;
+
     int getScore() const;
 
     void setHealth(int value);
+
+    void setLevel(int value);
 
     void setScore(int value);
 
 private:
     int health;
     int score;
+    int level;
 };
 #endif //OOP_PLAYER_H

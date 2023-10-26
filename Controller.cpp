@@ -1,4 +1,9 @@
 #include "Controller.h"
+#include "Events/Heal.h"
+#include "Events/Coin.h"
+#include "Events/Enemy.h"
+#include "Events/Teleport.h"
+#include <tuple>
 #include <iostream>
 using namespace std;
 
@@ -30,14 +35,32 @@ void Controller::move(Direction direction) {
             }
             break;
     }
+    Event* event = field.getCell(x, y).getEvent();
+    auto *pl = dynamic_cast<PlayerEvent *> (event);
+    if (pl){
+        event->execute();
+        field.getCell(x, y).setEvent(nullptr);
+    }
 }
 
-int Controller::getX(){
+int Controller::getX() const{
     return x;
 }
 
-int Controller::getY() {
+int Controller::getY() const {
     return y;
+}
+
+void Controller::setX(int value) {
+    if(value < field.getWidth() && value > 0 && field.getCell(value, y).isPassable()){
+        x = value;
+    }
+}
+
+void Controller::setY(int value) {
+    if(value < field.getHeight() && value > 0 && field.getCell(x, value).isPassable()){
+        y = value;
+    }
 }
 
 void Controller::showPlayerStats() {
@@ -52,9 +75,25 @@ void Controller::showPlayerCoords() {
 void Controller::showField() {
     for(int i = 0; i < field.getHeight(); i++){
         for(int j = 0; j < field.getWidth(); j++){
+            Event* event = field.getCell(j, i).getEvent();
             if(field.getCell(j, i).isPassable()){
                 if(x == j && y == i){
                     cout << " P ";
+                }
+                else if(field.getExit().first == j && field.getExit().second == i){
+                    cout << " E ";
+                }
+                else if(dynamic_cast<Heal *>(event)){
+                    cout << " + ";
+                }
+                else if(dynamic_cast<Coin *>(event)){
+                    cout << " $ ";
+                }
+                else if(dynamic_cast<Enemy *>(event)){
+                    cout << ":D ";
+                }
+                else if(dynamic_cast<Teleport *>(event)){
+                    cout << " @ ";
                 }
                 else{
                     cout << " _ ";

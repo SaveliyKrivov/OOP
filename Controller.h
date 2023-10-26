@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "Field.h"
+#include "Field/Field.h"
 #ifndef OOP_CONTROLLER_H
 #define OOP_CONTROLLER_H
 enum class Direction {
@@ -15,8 +15,11 @@ public:
     ~Controller() = default;
 
     void move(Direction direction);
-    int getX();
-    int getY();
+    int getX() const;
+    int getY() const;
+
+    void setX(int value);
+    void setY(int value);
 
     void heal(int value);
     void takeDamage(int value);

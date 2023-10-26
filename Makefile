@@ -1,2 +1,4 @@
 all:
-	g++ main.cpp Player.cpp Controller.cpp -o game
+	g++ main.cpp Player.cpp Controller.cpp Cell.cpp Field.cpp -o game
+
+
