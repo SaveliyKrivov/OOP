@@ -1,12 +1,7 @@
 #include "Teleport.h"
 
-//Teleport::Teleport(Player& player, Field& field) : FieldEvent(player, field){}
-//
-//void Teleport::execute() {
-//
-//}
 
-Teleport::Teleport(Player &player, Controller &cl, Field &fl) : PlayerEvent(player), cl(cl), fl(fl){}
+Teleport::Teleport(Player &player, Controller &cl, Field &fl) : FieldEvent(player, cl, fl){}
 
 void Teleport::execute() {
     if(cl.getX() + 3 < fl.getWidth()){

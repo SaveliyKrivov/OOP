@@ -7,7 +7,7 @@ class PlayerEvent : public Event{
 public:
     explicit PlayerEvent(Player& player);
 
-    virtual void execute() = 0;
+    void execute() override = 0;
     virtual ~PlayerEvent() = default;
 
 protected:

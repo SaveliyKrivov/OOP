@@ -25,4 +25,6 @@ add_executable(OOP main.cpp
         Events/Enemy.h
         Events/Teleport.cpp
         Events/Teleport.h
+        Events/FieldEvent.cpp
+        Events/FieldEvent.h
 )
