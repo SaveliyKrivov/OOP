@@ -5,7 +5,7 @@
 class Cell{
 public:
     explicit Cell(bool state = true, Event* event = nullptr);
-
+    ~Cell();
     void setState(bool state);
     bool isPassable() const;
 

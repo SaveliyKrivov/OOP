@@ -1,6 +1,6 @@
 #ifndef OOP_PLAYER_H
 #define OOP_PLAYER_H
-#define DEFAULT_HEALTH 100
+#define DEFAULT_HEALTH 50
 #define DEFAULT_SCORE 0
 class Player{
 public:

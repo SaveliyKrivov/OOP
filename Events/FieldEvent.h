@@ -1,7 +1,7 @@
 #include "Event.h"
-#include "../Controller.h"
+#include "../Control/Controller.h"
 #include "../Field/Field.h"
-#include "../Player.h"
+#include "../Player/Player.h"
 #ifndef OOP_FIELDEVENT_H
 #define OOP_FIELDEVENT_H
 

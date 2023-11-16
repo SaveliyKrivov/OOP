@@ -5,6 +5,10 @@ Cell::Cell(bool state, Event* event) {
     this->event = event;
 }
 
+Cell::~Cell(){
+    delete event;
+}
+
 void Cell::setState(bool state) {
     this->state = state;
 }

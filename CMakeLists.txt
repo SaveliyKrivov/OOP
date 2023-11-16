@@ -2,12 +2,13 @@ cmake_minimum_required(VERSION 3.26)
 project(OOP)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXE_LINKER_FLAGS "-static")
 
 add_executable(OOP main.cpp
-        Player.h
-        Player.cpp
-        Controller.cpp
-        Controller.h
+        Player/Player.h
+        Player/Player.cpp
+        Control/Controller.cpp
+        Control/Controller.h
         Field/Cell.cpp
         Field/Cell.h
         Field/Field.h
@@ -27,4 +28,12 @@ add_executable(OOP main.cpp
         Events/Teleport.h
         Events/FieldEvent.cpp
         Events/FieldEvent.h
+        GameExecution/GameManager.cpp
+        GameExecution/GameManager.h
+        Field/ShowField.cpp
+        Field/ShowField.h
+        GameExecution/ReadFile.cpp
+        GameExecution/ReadFile.h
+        GameExecution/ReadConsoleCmnds.cpp
+        GameExecution/ReadConsoleCmnds.h
 )

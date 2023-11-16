@@ -12,7 +12,7 @@ using namespace std;
 
 class Field{
 public:
-    explicit Field(int width = DEFAULT_WIDTH, int height = DEFAULT_HEIGHT);
+    Field(int width = DEFAULT_WIDTH, int height = DEFAULT_HEIGHT);
     Field(Field& other);
     Field& operator=(const Field& other);
     Field(Field&& other);

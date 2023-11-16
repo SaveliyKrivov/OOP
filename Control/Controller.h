@@ -1,13 +1,8 @@
-#include "Player.h"
-#include "Field/Field.h"
+#include "../Player/Player.h"
+#include "../Field/Field.h"
+#include "../GameExecution/ReadFile.h"
 #ifndef OOP_CONTROLLER_H
 #define OOP_CONTROLLER_H
-enum class Direction {
-    Up,
-    Down,
-    Left,
-    Right
-};
 
 class Controller {
 public:
@@ -21,12 +16,8 @@ public:
     void setX(int value);
     void setY(int value);
 
-    void heal(int value);
-    void takeDamage(int value);
-    void addScore(int value);
     void showPlayerStats();
     void showPlayerCoords();
-    void showField();
 private:
     Player& player;
     Field& field;

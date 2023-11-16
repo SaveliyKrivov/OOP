@@ -1,5 +1,5 @@
 #include "Event.h"
-#include "../Player.h"
+#include "../Player/Player.h"
 #ifndef OOP_PLAYEREVENT_H
 #define OOP_PLAYEREVENT_H
 
