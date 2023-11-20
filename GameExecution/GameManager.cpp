@@ -63,14 +63,33 @@ void GameManager::run(){
     }
     if (getGameState() == Lose){
         std::cout << "You lost! Try again\n";
+        askToPlayAgain();
     }
     else if (getGameState() == Win){
         std::cout << "You won! Congratulations!\n";
         std::cout <<  "Check out another level if you haven't already!\n";
+        askToPlayAgain();
     }
     else{
         std::cout << "Game was stopped\n";
+        askToPlayAgain();
     }
 
 }
+
+void GameManager::askToPlayAgain() {
+    char choice;
+    std::cout << "Would you like to play again? (y/n): ";
+    std::cin >> choice;
+    if (choice == 'y' || choice == 'Y') {
+        run();
+    } else if (choice == 'n' || choice == 'N') {
+        std::cout << "Thanks for playing!\n";
+        exit(0);
+    } else {
+        std::cout << "Invalid input. Please enter 'y' or 'n'.\n";
+        askToPlayAgain();
+    }
+}
+
 

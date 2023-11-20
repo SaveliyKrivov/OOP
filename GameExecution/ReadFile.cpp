@@ -1,44 +1,10 @@
-
 #include "ReadFile.h"
 
-//ReadFile::ReadFile() {
-////    string inputLine;
-//    string includedKeys;
-//    vector<string> includedCommands;
-//    vector<pair<string, Direction>> commandKeyPairs = {
-//            {"command1", Direction::up},
-//            {"command2", Direction::left},
-//            {"command3", Direction::down},
-//            {"command4", Direction::right},
-//            {"command5", Direction::finish}
-//    };
-//
-//    fstream file("../commands.txt");
-//    if (file.is_open()){
-////        file >> inputLine;
-////        checkInputCommands(inputLine, includedCommands);
-////        file >> inputLine;
-////        checkInputKey(inputLine, includedKeys);
-////        commands.insert(pair<string, Direction>(inputLine, up));
-//        for (const auto& pair : commandKeyPairs) {
-//            std::string inputLine;
-//            file >> inputLine;
-//            checkInputCommands(inputLine, includedCommands);
-//            file >> inputLine;
-//            checkInputKey(inputLine, includedKeys);
-//            commands.insert(pair);
-//        }
-//    }
-//    else{
-//        cout << "Error occured when reading a file\n";
-//    }
-//}
 ReadFile::ReadFile() {
     string inputLine;
     string includedKeys;
     vector<string> includedCommands;
     vector<Direction> directions {Up, Left, Down, Right, Finish};
-
     std::fstream file("../commands.txt");
     if (file.is_open()) {
 
@@ -51,6 +17,9 @@ ReadFile::ReadFile() {
             checkInputKey(inputLine, includedKeys);
             commands.insert(std::pair<string, Direction>(inputLine, directions[index]));
             index++;
+        }
+        if (index != int(directions.size())){
+            throw std::invalid_argument("not all commands have their keys");
         }
     }
     else {

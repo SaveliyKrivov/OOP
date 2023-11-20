@@ -36,4 +36,6 @@ add_executable(OOP main.cpp
         GameExecution/ReadFile.h
         GameExecution/ReadConsoleCmnds.cpp
         GameExecution/ReadConsoleCmnds.h
+        GameExecution/ReadConfig.cpp
+        GameExecution/ReadConfig.h
 )

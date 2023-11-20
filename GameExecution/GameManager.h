@@ -20,6 +20,7 @@ public:
     void run();
     bool isRunning();
     void changeGameState(GameState state);
+    void askToPlayAgain();
     GameState getGameState();
 };
 
