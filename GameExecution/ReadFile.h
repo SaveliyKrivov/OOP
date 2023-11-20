@@ -14,6 +14,13 @@ enum Direction {Up, Right, Down, Left, Finish};
 class ReadFile {
 private:
     map<string, Direction> commands;
+    const map<string, Direction> default_commands{
+            {"w", Direction::Up},
+            {"a", Direction::Left},
+            {"s", Direction::Down},
+            {"d", Direction::Right},
+            {"x", Direction::Finish}
+    };
 public:
     map<string, Direction> getCommands();
     void checkInputCommands(string& inputLine, vector<string> &includedCommands);

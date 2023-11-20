@@ -19,7 +19,9 @@ ReadFile::ReadFile() {
             index++;
         }
         if (index != int(directions.size())){
-            throw std::invalid_argument("not all commands have their keys");
+            std::cout << "Not all commands have their keys: default controls configuration applied" << std::endl;
+            commands = default_commands;
+//            throw std::invalid_argument("not all commands have their keys");
         }
     }
     else {
@@ -33,7 +35,9 @@ void ReadFile::checkInputCommands(std::string &inputLine, vector<std::string> &i
         includedCommands.push_back(inputLine);
     }
     else{
-        throw std::invalid_argument("commands.txt is incorrect: command duplication");
+        commands = default_commands;
+        std::cout << "Invalid commands list: default controls configuration applied" << std::endl;
+//        throw std::invalid_argument("commands.txt is incorrect: command duplication");
     }
 }
 
@@ -42,7 +46,9 @@ void ReadFile::checkInputKey(std::string &inputLine, std::string &includedKeys) 
         includedKeys.append(inputLine);
     }
     else{
-        throw std::invalid_argument("commands.txt is incorrect: key error");
+        commands = default_commands;
+        std::cout << "Invalid key mapping: default controls configuration applied" << std::endl;
+//        throw std::invalid_argument("commands.txt is incorrect: key error");
     }
 }
 
