@@ -25,7 +25,7 @@ void GameManager::run(){
 
     std::ofstream file;
     int choice;
-    std::cout << "Hello! Where would you like to store logging information?\n File - 0, Console - 1, Both - 2\n";
+    std::cout << "Hello! Where would you like to store logging information?\n File - 0, Console - 1, Both - 2, Nowhere - any other key\n";
     std::cin >> choice;
     if (choice == 0){
         file.open("game_log.txt");
@@ -46,8 +46,8 @@ void GameManager::run(){
         consoleHandler = new MessageHandler(std::cout);
     }
     else{
-        std::cout << "Incorrect input: logging info will be stored in console\n";
-        consoleHandler = new MessageHandler(std::cout);
+//        std::cout << "Incorrect input: logging info will be stored in console\n";
+//        consoleHandler = new MessageHandler(std::cout);
     }
 
     system("cls");
