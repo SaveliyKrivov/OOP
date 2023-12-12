@@ -55,4 +55,8 @@ add_executable(OOP main.cpp
         Logging/PlayerLost.h
         Logging/GameStarted.cpp
         Logging/GameStarted.h
+        Logging/ValidCommandPressed.cpp
+        Logging/ValidCommandPressed.h
+        Logging/InvalidCommandPressed.cpp
+        Logging/InvalidCommandPressed.h
 )

@@ -1,5 +1,7 @@
 #include "ReadFile.h"
 
+const char* DirectionNames[] = {"Up", "Right", "Down", "Left", "Finish", "Invalid"};
+
 ReadFile::ReadFile() {
     string inputLine;
     string includedKeys;

@@ -10,7 +10,7 @@ private:
 public:
     explicit ReadConsoleCmnds(std::map<std::string, Direction> cmnds, bool gameInterruption = false);
     bool getGameInterruption() const;
-    Direction readInput();
+    std::tuple<Direction, std::string, bool>readInput();
     char getch();
 };
 

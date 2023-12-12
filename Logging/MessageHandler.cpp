@@ -11,6 +11,7 @@ void MessageHandler::trackMessage(const Message& msg) {
 void MessageHandler::sendMessages() {
     for (const auto& msg : m_messages) {
         m_os << *msg << '\n';
-        m_os.flush();
+        delete msg;
     }
+    m_messages.clear();
 }

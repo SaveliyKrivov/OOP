@@ -3,6 +3,8 @@
 #include "../Logging/PlayerWon.h"
 #include "../Logging/PlayerLost.h"
 #include "../Logging/GameStarted.h"
+#include "../Logging/ValidCommandPressed.h"
+#include "../Logging/InvalidCommandPressed.h"
 #include <fstream>
 #include <iostream>
 #include "../Control/Controller.h"
@@ -30,7 +32,8 @@ public:
     bool isRunning();
     void changeGameState(GameState state);
     void askToPlayAgain();
-    void processMessage(const Message& msg);
+    void trackMessage(Message* msg);
+    void sendMessage();
     GameState getGameState();
 };
 

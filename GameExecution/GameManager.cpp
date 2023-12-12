@@ -76,18 +76,34 @@ void GameManager::run(){
         FieldBuilder builder(field, player, controller, 2);
         builder.buildField();
     }
+    Message* startMessage = new GameStarted(field);
+    trackMessage(startMessage);
 
     system("cls");
     changeGameState(Active);
-    GameStarted startMessage(field);
-    processMessage(startMessage);
+
     view.PrintField();
     Direction direction;
 
 
     while(!cmndsReader.getGameInterruption()){
-        direction = cmndsReader.readInput();
+        bool isValid = true;
+        std::string keyPressed;
+        do{
+            auto input = cmndsReader.readInput();
+            direction = std::get<0>(input);
+            keyPressed = std::get<1>(input);
+            isValid = std::get<2>(input);
+            if(!isValid){
+                Message* invalidCommand = new InvalidCommandPressed(keyPressed);
+                trackMessage(invalidCommand);
+            }
+
+        }while(!isValid);
+
         controller.move(direction);
+        Message* moveMessage = new ValidCommandPressed(keyPressed, direction);
+        trackMessage(moveMessage);
         observer.observe();
         if (player.getHealth() == 0){
             changeGameState(Lose);
@@ -102,15 +118,16 @@ void GameManager::run(){
     }
     view.PrintField();
     if (getGameState() == Lose){
-        PlayerLost loseMessage(controller);
-        processMessage(loseMessage);
+        Message* loseMessage = new PlayerLost(controller);
+        trackMessage(loseMessage);
+        sendMessage();
         std::cout << "You lost! Try again\n";
         askToPlayAgain();
     }
     else if (getGameState() == Win){
-        PlayerWon winMessage(player);
-        processMessage(winMessage);
-
+        Message* winMessage = new PlayerWon(player);
+        trackMessage(winMessage);
+        sendMessage();
         std::cout << "You won! Congratulations!\n";
         std::cout <<  "Check out another level if you haven't already!\n";
         askToPlayAgain();
@@ -119,6 +136,7 @@ void GameManager::run(){
         std::cout << "Game was stopped\n";
         askToPlayAgain();
     }
+    system("pause");
 
 }
 
@@ -137,16 +155,23 @@ void GameManager::askToPlayAgain() {
     }
 }
 
-void GameManager::processMessage(const Message& msg) {
+void GameManager::trackMessage(Message* msg) {
     if (consoleHandler != nullptr) {
-        consoleHandler->trackMessage(msg);
+        consoleHandler->trackMessage(*msg);
+    }
+
+    if (fileHandler != nullptr) {
+        fileHandler->trackMessage(*msg);
+    }
+}
+
+void GameManager::sendMessage() {
+    if (consoleHandler != nullptr) {
         consoleHandler->sendMessages();
     }
 
     if (fileHandler != nullptr) {
-        fileHandler->trackMessage(msg);
         fileHandler->sendMessages();
     }
 }
-
 

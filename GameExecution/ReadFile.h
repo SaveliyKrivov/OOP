@@ -9,7 +9,8 @@ using std::string;
 #ifndef OOP_READFILE_H
 #define OOP_READFILE_H
 
-enum Direction {Up, Right, Down, Left, Finish};
+enum Direction {Up, Right, Down, Left, Finish, Invalid};
+extern const char* DirectionNames[];
 
 class ReadFile {
 private:

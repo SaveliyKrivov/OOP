@@ -19,17 +19,21 @@ bool ReadConsoleCmnds::getGameInterruption() const {
     return gameInterruption;
 }
 
-Direction ReadConsoleCmnds::readInput() {
+std::tuple<Direction, std::string, bool> ReadConsoleCmnds::readInput() {
     std::string command;
-    do{
-        char ch;
-        command = "";
-        ch = getch();
-        command.push_back(ch);
-    }while(cmnds.find(command) == cmnds.end());
+    bool isValid = true;
+    char ch;
+    command = "";
+    ch = getch();
+    command.push_back(ch);
+    if (cmnds.find(command) == cmnds.end()) {
+        isValid = false;
+        return {Direction::Invalid, command, isValid};
+    }
 
     if (cmnds.at(command) == Finish){
         gameInterruption = true;
     }
-    return cmnds.at(command);
+
+    return {cmnds.at(command), command, isValid};
 }
