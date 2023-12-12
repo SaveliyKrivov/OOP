@@ -45,4 +45,14 @@ add_executable(OOP main.cpp
         Observer/MonitorCoordinates.h
         Observer/MonitorGameState.cpp
         Observer/MonitorGameState.h
+        Logging/Message.h
+        Logging/Message.cpp
+        Logging/PlayerWon.cpp
+        Logging/PlayerWon.h
+        Logging/MessageHandler.cpp
+        Logging/MessageHandler.h
+        Logging/PlayerLost.cpp
+        Logging/PlayerLost.h
+        Logging/GameStarted.cpp
+        Logging/GameStarted.h
 )

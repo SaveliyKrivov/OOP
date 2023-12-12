@@ -1,4 +1,9 @@
 #include <windows.h>
+#include "../Logging/MessageHandler.h"
+#include "../Logging/PlayerWon.h"
+#include "../Logging/PlayerLost.h"
+#include "../Logging/GameStarted.h"
+#include <fstream>
 #include <iostream>
 #include "../Control/Controller.h"
 #include "../Field/Field.h"
@@ -17,11 +22,15 @@ enum GameState{Active, Non_active, Win, Lose};
 class GameManager {
 private:
     GameState gameProgress;
+    MessageHandler* consoleHandler = nullptr;
+    MessageHandler* fileHandler = nullptr;
 public:
+    ~GameManager();
     void run();
     bool isRunning();
     void changeGameState(GameState state);
     void askToPlayAgain();
+    void processMessage(const Message& msg);
     GameState getGameState();
 };
 
