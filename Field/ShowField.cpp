@@ -3,6 +3,7 @@ using std::cout;
 ShowField::ShowField(Field& field, Controller& controller) : field(field), controller(controller) {}
 
 void ShowField::PrintField() {
+    system("cls");
     for(int i = 0; i < field.getHeight(); i++){
         for(int j = 0; j < field.getWidth(); j++){
             Event* event = field.getCell(j, i).getEvent();

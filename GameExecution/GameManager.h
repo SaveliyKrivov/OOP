@@ -7,6 +7,7 @@
 #include "../Player/Player.h"
 #include "ReadFile.h"
 #include "ReadConsoleCmnds.h"
+#include "../Observer/Observer.h"
 
 #ifndef OOP_GAMERUNNER_H
 #define OOP_GAMERUNNER_H

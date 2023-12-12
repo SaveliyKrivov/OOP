@@ -36,4 +36,13 @@ add_executable(OOP main.cpp
         GameExecution/ReadFile.h
         GameExecution/ReadConsoleCmnds.cpp
         GameExecution/ReadConsoleCmnds.h
+        Observer/Observer.cpp
+        Observer/Observer.h
+        Observer/Monitor.h
+        Observer/MonitorStats.cpp
+        Observer/MonitorStats.h
+        Observer/MonitorCoordinates.cpp
+        Observer/MonitorCoordinates.h
+        Observer/MonitorGameState.cpp
+        Observer/MonitorGameState.h
 )

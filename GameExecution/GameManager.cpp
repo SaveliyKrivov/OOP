@@ -22,7 +22,10 @@ void GameManager::run(){
     Field field;
     Controller controller(player, field);
     ShowField view(field, controller);
-
+//    MonitorGameState gs(*this);
+    MonitorStats stats(player);
+    MonitorCoordinates coords(controller);
+    Observer observer(stats, coords, view);
     class ReadFile commands;
     ReadConsoleCmnds cmndsReader(commands.getCommands());
 
@@ -44,23 +47,24 @@ void GameManager::run(){
     changeGameState(Active);
     view.PrintField();
     Direction direction;
-    direction = cmndsReader.readInput();
+
 
     while(!cmndsReader.getGameInterruption()){
+        direction = cmndsReader.readInput();
         controller.move(direction);
+        observer.observe();
         if (player.getHealth() == 0){
             changeGameState(Lose);
         }
         else if (controller.getX() == field.getExit().first and controller.getY() == field.getExit().second){
             changeGameState(Win);
         }
-        system("cls");
-        view.PrintField();
         if (!isRunning()){
             break;
         }
-        direction = cmndsReader.readInput();
+
     }
+    view.PrintField();
     if (getGameState() == Lose){
         std::cout << "You lost! Try again\n";
         askToPlayAgain();
